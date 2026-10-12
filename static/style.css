@@ -1,0 +1,127 @@
+body, html {
+    margin: 0;
+    padding: 40px 20px;
+    width: 100%;
+    font-family: 'segoe', Tahoma, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+}
+.profile {
+    display: flex;
+    max-width: 1000px;
+    margin: 0;
+    gap: 48px;
+    min-height: 100vh;
+}
+.picture {
+    object-fit: cover;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.08);
+    margin: 0;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    padding: 0;
+    background-color: #1a1a24;
+}
+.head {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 850px;
+}
+.born h1 {
+    font-size: 2.2rem;
+    margin: 0 0 12px 0;
+    color: #111;
+}
+.born h3 {
+    font-size: 2.2rem;
+    color: #222;
+    padding-bottom: 8px;
+    margin: 0 0 16px 0;
+}
+.born p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+    color: #444;
+}
+.styled {
+    margin: 0;
+    padding-left: 24px;
+    margin-bottom: 6px;
+}
+.unstyled {
+    font-weight: 500;
+}
+.picture p {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: o;
+    padding: 20px 10px;
+    border-bottom: 1px solid #2d2d3d;
+}
+.picture img {
+    display: block;
+    height: auto;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    filter: brightness(0.95);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transform: scale;
+    transition: transform 0.4s cubic-bezier(0.25, 1,0.5,1),
+                filter 0.4s ease,
+                box-shadow 0.4s ease;
+}
+.picture img:hover {
+    filter: brightness(1.05);
+    transform: scale(1.03);
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+.born h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 15px;
+    border-left: 4px solid #3498db;
+    border-radius: 0 6px 6px 0;
+    margin-top: 20px;
+}
+.course h3 {
+    font-size: 1.3rem;
+    margin: 25px 0 12px 0;
+}
+.course ul {
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+}
+.course li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #4a5568;
+    margin-bottom: 4px;
+}
+.connect h3 {
+    font-size: 1.25rem;
+    margin: 0 0 16px 0;
+}
+.unstyled {
+    list-style: none;
+    padding: 0 !important;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.unstyled li a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+.unstyled li a:hover {
+    background-color: #2980b9;
+    transform: translate(-2px);
+}
