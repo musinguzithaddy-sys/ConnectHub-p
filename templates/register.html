@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="container">
+    <form method="POST" action="{% url 'home'%}">
+        {% csrf_token %}
+        <label for="name">Name</label><br>
+        <input type="text" name="name" placeholder="enter you name" required><br>
+        <label for="phone_number">Phone Number</label><br>
+        <input type="text" name="phone_number" id="phone" placeholder="Enter your phone number" required><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
+        <label for="id_country">Country:</label><br>
+        <select id="id_country" name="country" autocomplete="country" required><br>
+            <option value="">Select Country</option><br>
+            {% for country in countries %}
+                <option value="{{ country.id }}">{{ country.name }}</option><br>
+            {% endfor %}
+        </select>
+
+        
+        <label for="id_city">City:</label><br>
+        <select id="id_city" name="city" autocomplete="address-level2" required><br>
+            <option value="">Select City</option><br>
+        </select>
+        
+
+        <label for="dob">Date Of Birth</label><br>
+        <input type="date" id="dob" name="dob" autocomplete="bday" max="2026-12-09" required><br>
+        <p>Select Gender:</p>
+        <input type="radio" id="male" name="gender" value="Male"><br>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female"><br>
+        <label for="female">Female</label><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" placeholder="password" required><br>
+        <label for="confirm_password">Confirm Password</label><br>
+        <input type="password" name="confirm_password" id="confirm_password" required><br>
+        <input type="submit">
+    </form>
+    <p>Already have an account? login <a href="{% url 'login' %}">here</a></p>
+    
+    <script>
+    const countrySelect = document.getElementById('id_country');
+    const citySelect = document.getElementById('id_city'); // Ensure your city <select> has id="id_city"
+
+    countrySelect.addEventListener('change', function() {
+        const countryId = this.value;
+        
+        // Show loading text while waiting for Django
+        citySelect.innerHTML = '<option value="">Loading...</option>';
+
+        if (countryId) {
+            // Call the load_cities URL defined in urls.py
+            fetch(`/ajax/load-citys/?country=${countryId}`)
+                .then(response => response.text())
+                .then(html => {
+                    // Inject the new <option> tags into the city dropdown
+                    citySelect.innerHTML = html;
+                });
+        } else {
+            citySelect.innerHTML = '<option value="">Select City</option>';
+        }
+    });
+</script>
+{% endblock %}

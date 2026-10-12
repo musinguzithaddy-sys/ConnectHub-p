@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}Login{% end block %}
-<div class="container">
-    <form method="post" action="/home/">
-        <label for="name">Name</label>
-        <input type="text" name="name" placeholder="enter you name">
+{% block title %}Register | Thadtech{% endblock %}
+{% block content %}
+<h1>Welcome to ConnectHub</h1>
+<p>Login required to contine</p>
+<div class="login_form">
+    <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <label for="email"></label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit">
     </form>
+    <p>Or Register <a href="{% url 'register' %}">here</a></p>
+</div>
+{% endblock %}
