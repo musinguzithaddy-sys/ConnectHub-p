@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
     <title>{% block title %}Thadtech{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css'%}">
-</head>
-<body>
+     {% block content %}
     <div class="profile">
          <div class="picture">
             <p>Welcome to  Thadtech</p>
@@ -15,7 +10,6 @@
             <img src="{% static 'Thaddy.jfif' %}" alt="Thaddy" width="300" height="700">
         </div>
         <div class="head">
-             {% block content %}
             <section class="born">
                 <h3>Know about us</h3>
                 <p>ConnectHub is a Thadtech product by Eng. Thaddy</p>
@@ -60,9 +54,8 @@
                     <li><a href="https://www.facebook.com/share/v/1LoRxQekHf/">Christmate</a>"</li>
                     <li><a href="https://www.linkedin.com/in/thaddy-musinguzi-989533352/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BQRD1oZz9SYGEiNWfDpwJ%2FA%3D%3D">Profile</a></li>
                 </ul>
-                {% endblock %}
+                
             </section>
         </div>
     </div>
-</body>
-</html>
+    {% endblock %}

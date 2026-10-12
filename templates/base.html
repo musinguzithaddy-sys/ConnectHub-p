@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Thadtech{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Navbar or Header could go here -->
+    
+    <div class="main-content">
+        {% block content %}
+        <!-- Unique page content will be injected here -->
+        {% endblock %}
+    </div>
+</body>
+</html>
