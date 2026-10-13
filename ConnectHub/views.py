@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from .models import City
 from django.contrib.auth.models import User
@@ -12,8 +12,9 @@ from .models import Country
 def home(request):
     return render(request, 'home.html')
 def register(request):
+    countries = Country.objects.all()
     if request.method == 'POST':
-        name = request.POST.get('phone')
+        name = request.POST.get('name')
         country_id  = request.POST.get('country')
         email = request.POST.get('email')
         city_id = request.POST.get('city')
@@ -22,11 +23,19 @@ def register(request):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
+        context = {
+            'countries': countries,
+            'name': name,
+            'email': email,
+            'phone_number': phone_number,
+            'dob': dob
+        }
+
         if password != confirm_password:
             messages.error(request, "Passwords do not match")
-            return render(render, 'register.html')
+            return render(request, 'register.html')
 
-        if User.objects.filter(username=email).exists:
+        if User.objects.filter(username=email).exists():
             messages.error(request, "Email already registered")
             return render(request, 'register.html')
 
@@ -38,30 +47,29 @@ def register(request):
         )
         user.save()
         return redirect('login')
-    countries = Country.objects.all()
+   
     return render(request, 'register.html', {'countries': countries})
+
 def login_view(request):
     if request.method == 'POST':
-        pass
-    return render(request, 'login.html')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "Invalid email or password")
+            return render(request, 'login.html')
+    return render(request, 'home.html')
 
 def load_cities(request):
+    # This matches the '?country=' from your JavaScript fetch URL
     country_id = request.GET.get('country')
+    
     cities = City.objects.filter(country_id=country_id).order_by('name')
     
-    # Make sure this points to 'cities.html'
+    # This renders your HTML tags using the 'citys' spelling for your loop
     return render(request, 'cities.html', {'citys': cities})
 
-
-
-
-
-
-def load_cities(request):
-    country_id = request.GET.get('country_id')
-    # Fetch cities belonging to the selected country, ordered alphabetically
-    citys = City.objects.filter(country_id=country_id).order_by('name')
-    
-    # Convert the queryset into a list of dictionaries for JSON
-    city_list = [{'id': city.id, 'name': city.name} for city in citys]
-    return JsonResponse(city_list, safe=False)

@@ -2,31 +2,40 @@
 {% block title %}Register{% endblock %}
 {% block content %}
 <div class="container">
-    <form method="POST" action="{% url 'home'%}">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div style="color: red; font-weight: bold; margin-bottom: 15px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST" action="">
         {% csrf_token %}
         <label for="name">Name</label><br>
-        <input type="text" name="name" placeholder="enter you name" required><br>
+        <input type="text" name="name" value="{{name}}" placeholder="enter you name" required><br>
         <label for="phone_number">Phone Number</label><br>
-        <input type="text" name="phone_number" id="phone" placeholder="Enter your phone number" required><br>
+        <input type="text" name="phone_number" id="phone" value="{{phone_number}}" placeholder="Enter your phone number" required><br>
         <label for="email">Email</label><br>
-        <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
+        <input type="email" name="email" id="email" value="{{email}}" placeholder="Enter your email" required><br>
         <label for="id_country">Country:</label><br>
-        <select id="id_country" name="country" autocomplete="country" required><br>
-            <option value="">Select Country</option><br>
+        <select id="id_country" name="country" autocomplete="country" required>
+            <option value="">Select Country</option>
             {% for country in countries %}
-                <option value="{{ country.id }}">{{ country.name }}</option><br>
+                <option value="{{ country.id }}">{{ country.name }}</option>
             {% endfor %}
         </select>
-
+        <br>
         
         <label for="id_city">City:</label><br>
-        <select id="id_city" name="city" autocomplete="address-level2" required><br>
-            <option value="">Select City</option><br>
+        <select id="id_city" name="city" autocomplete="address-level2" required>
+            <option value="">Select City</option>
         </select>
+        <br>
         
 
         <label for="dob">Date Of Birth</label><br>
-        <input type="date" id="dob" name="dob" autocomplete="bday" max="2026-12-09" required><br>
+        <input type="date" id="dob" name="dob" autocomplete="bday" value="{{dob}}" required><br>
         <p>Select Gender:</p>
         <input type="radio" id="male" name="gender" value="Male"><br>
         <label for="male">Male</label><br>
@@ -42,7 +51,7 @@
     
     <script>
     const countrySelect = document.getElementById('id_country');
-    const citySelect = document.getElementById('id_city'); // Ensure your city <select> has id="id_city"
+    const citySelect = document.getElementById('id_city'); // city <select> has id="id_city"
 
     countrySelect.addEventListener('change', function() {
         const countryId = this.value;

@@ -4,9 +4,9 @@
 <h1>Welcome to ConnectHub</h1>
 <p>Login required to contine</p>
 <div class="login_form">
-    <form method="POST" action="{% url 'home' %}">
+    <form method="POST" action="">
         {% csrf_token %}
-        <label for="email"></label><br>
+        <label for="email">Email</label><br>
         <input type="email" id="email" name="email" required><br>
         <label for="password">Password</label><br>
         <input type="password" name="password" id="password" required><br>
