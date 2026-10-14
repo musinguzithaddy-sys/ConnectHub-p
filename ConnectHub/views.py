@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .models import Country
+from .models import Post 
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
@@ -72,4 +73,16 @@ def load_cities(request):
     
     # This renders your HTML tags using the 'citys' spelling for your loop
     return render(request, 'cities.html', {'citys': cities})
+
+ # or from connect.models import Post
+
+def home(request):
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        if content:
+            Post.objects.create(user=request.user, content=content)
+            return redirect('home')
+    
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, 'index.html', {'posts': posts}) # change index.html to your file name
 

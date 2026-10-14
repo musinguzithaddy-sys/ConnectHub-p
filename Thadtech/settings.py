@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARrmdir /s /q ConnectHub-p
 #NING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = SECRET_KEY = 'django-insecure-8l_!v$9#k%q2w3e4r5t6y7u8i9o0p1a2s3d4f5g6h7j8k9l0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

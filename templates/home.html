@@ -1,8 +1,66 @@
 {% extends 'base.html' %}
-
-{% block title %}Thadtech{% endblock %}
-
 {% block content %}
-    <h1>Welcome to the Home Page</h1>
-    <p>Wait for more</p>
+<div class="container-fluid mt-3">
+  <div class="row">
+    
+    <!-- LEFT - Profile -->
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h5>My Profile</h5>
+        <p>{{ request.user.username }}</p>
+        <a href="#" class="btn btn-outline-primary btn-sm">View Profile</a>
+      </div>
+    </div>
+
+    <!-- CENTER - Post Feed -->
+    <div class="col-md-6">
+      <!-- Create Post -->
+      <div class="card p-3 mb-3">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <textarea name="content" class="form-control" placeholder="What's on your mind, {{ request.user.username }}?" rows="3"></textarea>
+          <button type="submit" class="btn btn-primary mt-2 w-100">Post</button>
+        </form>
+      </div>
+
+      <!-- Posts List -->
+      {% for post in posts %}
+      <div class="card p-3 mb-2">
+        <strong>{{ post.user.username }}</strong> <small class="text-muted">{{ post.created_at|timesince }} ago</small>
+        <p class="mt-2">{{ post.content }}</p>
+        {% if post.image %}
+          <img src="{{ post.image.url }}" class="img-fluid rounded">
+        {% endif %}
+        <div class="mt-2">
+          <button class="btn btn-sm btn-outline-secondary">Like</button>
+          <button class="btn btn-sm btn-outline-secondary">Comment</button>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-center text-muted">No posts yet. Be first to post!</p>
+      {% endfor %}
+    </div>
+
+    <!-- RIGHT - News Feed -->
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h5>News Feed</h5>
+        <hr>
+        <div class="mb-2">
+          <small class="fw-bold">ThadTech Update</small><br>
+          <small class="text-muted">New version of ConnectHub launched!</small>
+        </div>
+        <div class="mb-2">
+          <small class="fw-bold">Campus News</small><br>
+          <small class="text-muted">Exams start next week.</small>
+        </div>
+        <div class="mb-2">
+          <small class="fw-bold">Trending in Uganda</small><br>
+          <small class="text-muted">#ConnectHub #Django</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 {% endblock %}
