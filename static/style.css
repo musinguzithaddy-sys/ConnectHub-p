@@ -1,6 +1,6 @@
 body, html {
     margin: 0;
-    padding: 40px 20px;
+    padding: 0;
     width: 100%;
     font-family: 'segoe', Tahoma, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #2c3e50;
@@ -127,13 +127,30 @@ body, html {
     background-color: #2980b9;
     transform: translate(-2px);
 }
-.home {
-    color: black;
-    background-image: url("flower.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    width: 100%;
-    margin: 0;
+.container {
+    margin: 10px auto;
+    border: 1px solid black;
+    max-width: 600px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 15px;
+    background-color: rgb(142, 165, 220);
+    justify-items: center;
+
+}
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="password"],
+.container input[type="date"],
+.container select {
+    padding: 10px;
+    display: block;
+    margin: 20px 0;
+    width: 400px;
+    border-radius: 10px;
+}
+
+.container input[type="submit"] {
+    padding: 7px 5px;
+    border-radius: 5px;
 }

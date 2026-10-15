@@ -12,39 +12,37 @@
     {% endif %}
     <form method="POST" action="">
         {% csrf_token %}
-        <label for="name">Name</label><br>
-        <input type="text" name="name" value="{{name}}" placeholder="enter you name" required><br>
-        <label for="phone_number">Phone Number</label><br>
-        <input type="text" name="phone_number" id="phone" value="{{phone_number}}" placeholder="Enter your phone number" required><br>
-        <label for="email">Email</label><br>
-        <input type="email" name="email" id="email" value="{{email}}" placeholder="Enter your email" required><br>
-        <label for="id_country">Country:</label><br>
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{name}}" placeholder="enter you name" required>
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone" value="{{phone_number}}" placeholder="Enter your phone number" required>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="{{email}}" placeholder="Enter your email" required>
+        <label for="id_country">Country:</label>
         <select id="id_country" name="country" autocomplete="country" required>
             <option value="">Select Country</option>
             {% for country in countries %}
                 <option value="{{ country.id }}">{{ country.name }}</option>
             {% endfor %}
         </select>
-        <br>
         
-        <label for="id_city">City:</label><br>
+        <label for="id_city">City:</label>
         <select id="id_city" name="city" autocomplete="address-level2" required>
             <option value="">Select City</option>
         </select>
-        <br>
         
 
-        <label for="dob">Date Of Birth</label><br>
-        <input type="date" id="dob" name="dob" autocomplete="bday" value="{{dob}}" required><br>
+        <label for="dob">Date Of Birth</label>
+        <input type="date" id="dob" name="dob" autocomplete="bday" value="{{dob}}" required>
         <p>Select Gender:</p>
-        <input type="radio" id="male" name="gender" value="Male"><br>
-        <label for="male">Male</label><br>
-        <input type="radio" id="female" name="gender" value="Female"><br>
-        <label for="female">Female</label><br>
-        <label for="password">Password</label><br>
-        <input type="password" id="password" name="password" placeholder="password" required><br>
-        <label for="confirm_password">Confirm Password</label><br>
-        <input type="password" name="confirm_password" id="confirm_password" required><br>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="password" required>
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" id="confirm_password" required>
         <input type="submit">
     </form>
     <p>Already have an account? login <a href="{% url 'login' %}">here</a></p>
