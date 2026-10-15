@@ -4,6 +4,8 @@ body, html {
     width: 100%;
     font-family: 'segoe', Tahoma, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #2c3e50;
+    height: 100%;
+    width: 100%;
 }
 .profile {
     display: flex;
@@ -124,4 +126,14 @@ body, html {
 .unstyled li a:hover {
     background-color: #2980b9;
     transform: translate(-2px);
+}
+.home {
+    color: black;
+    background-image: url("flower.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
 }
