@@ -63,7 +63,7 @@ def login_view(request):
         else:
             messages.error(request, "Invalid email or password")
             return render(request, 'login.html')
-    return render(request, 'home.html')
+    return render(request, 'login.html')
 
 def load_cities(request):
     # This matches the '?country=' from your JavaScript fetch URL
@@ -84,5 +84,5 @@ def home(request):
             return redirect('home')
     
     posts = Post.objects.all().order_by('-created_at')
-    return render(request, 'index.html', {'posts': posts}) # change index.html to your file name
+    return render(request, 'home.html', {'posts': posts}) # change index.html to your file name
 
